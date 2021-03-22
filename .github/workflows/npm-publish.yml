@@ -24,7 +24,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: asset-test
-          path: test
+          path: test/
 
       - run: pwd
       - run: ls -ltr
@@ -34,9 +34,12 @@ jobs:
         with:
           node-version: 14.x
 
-      - run: npm ci install
-      - run: cd fundamentals-of-testing-in-js
+      - name: Install dependencies
+        run: npm ci install
+        
+      - name: Execute tests
       - run: npm test
+      
       - run: pwd
       - run: ls -ltr
 
@@ -44,11 +47,14 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: code-coverage-report
-          path: coverage/**
+          path: coverage/
+          if-no-files-found: error # 'warn' or 'ignore' are also available, defaults to `warn` 
           
       - name: Archive the test results
         uses: actions/upload-artifact@v2
         with:
           name: test-report
           path: test-report/
+          if-no-files-found: error # 'warn' or 'ignore' are also available, defaults to `warn` 
+
           
