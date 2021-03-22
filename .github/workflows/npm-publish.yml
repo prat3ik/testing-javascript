@@ -38,7 +38,7 @@ jobs:
         run: npm ci install
         
       - name: Execute tests
-      - run: npm test
+        run: npm test
       
       - run: pwd
       - run: ls -ltr
