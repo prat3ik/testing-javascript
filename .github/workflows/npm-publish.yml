@@ -11,7 +11,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      
+
+      - name: test step
+        run: mkdir test
+        
+      - name: test step
+        run: |
+          cd test
+          echo "hello" > log.txt
+        
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v2
+        with:
+          name: asset-test
+          path: test
+          
+
       - name: Setup node 14
         uses: actions/setup-node@v2
         with:
