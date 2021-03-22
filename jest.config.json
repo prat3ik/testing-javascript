@@ -1,0 +1,14 @@
+{
+  "verbose": true,
+  "reporters": [
+    "default",
+    [
+      "jest-html-reporters",
+      {
+        "publicPath": "./../test-report/html-report",
+        "filename": "report.html",
+        "expand": true
+      }
+    ]
+  ]
+}
