@@ -39,9 +39,16 @@ jobs:
         
       - name: Execute tests
         run: npm test
-      
-      - run: pwd
-      - run: ls -ltr
+        if: ${{ always() }}
+
+      - name: PWD
+        run: pwd
+        if: ${{ always() }}
+
+      - name: List of files
+        run: ls -ltr
+        if: ${{ always() }}
+
 
       - name: Archive code coverage results
         uses: actions/upload-artifact@v2
