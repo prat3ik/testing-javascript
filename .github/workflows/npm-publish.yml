@@ -52,6 +52,7 @@ jobs:
 
       - name: Archive code coverage results
         uses: actions/upload-artifact@v2
+        if: ${{ always() }}
         with:
           name: code-coverage-report
           path: coverage/
@@ -59,6 +60,7 @@ jobs:
           
       - name: Archive the test results
         uses: actions/upload-artifact@v2
+        if: ${{ always() }}
         with:
           name: test-report
           path: test-report/
