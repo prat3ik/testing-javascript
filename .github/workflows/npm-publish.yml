@@ -11,24 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-
-      - name: test step
-        run: mkdir test
-        
-      - name: test step
-        run: |
-          cd test
-          echo "hello" > log.txt
-        
-      - name: Archive code coverage results
-        uses: actions/upload-artifact@v2
-        with:
-          name: asset-test
-          path: test/
-
-      - run: pwd
-      - run: ls -ltr
-
+      
       - name: Setup node 14
         uses: actions/setup-node@v2
         with:
@@ -39,20 +22,10 @@ jobs:
         
       - name: Execute tests
         run: npm test
-        if: ${{ always() }}
-
-      - name: PWD
-        run: pwd
-        if: ${{ always() }}
-
-      - name: List of files
-        run: ls -ltr
-        if: ${{ always() }}
-
 
       - name: Archive code coverage results
         uses: actions/upload-artifact@v2
-        if: ${{ always() }}
+        if: ${{ always() }} # if you don't mention this, then this step will never run because 'npm test' will EXIT the process!
         with:
           name: code-coverage-report
           path: coverage/
@@ -65,5 +38,3 @@ jobs:
           name: test-report
           path: test-report/
           if-no-files-found: error # 'warn' or 'ignore' are also available, defaults to `warn` 
-
-          
