@@ -25,7 +25,9 @@ jobs:
         with:
           name: asset-test
           path: test
-          
+
+      - run: pwd
+      - run: ls -ltr
 
       - name: Setup node 14
         uses: actions/setup-node@v2
@@ -35,6 +37,8 @@ jobs:
       - run: npm ci install
       - run: cd fundamentals-of-testing-in-js
       - run: npm test
+      - run: pwd
+      - run: ls -ltr
 
       - name: Archive code coverage results
         uses: actions/upload-artifact@v2
